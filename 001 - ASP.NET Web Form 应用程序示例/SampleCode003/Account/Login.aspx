@@ -11,6 +11,8 @@
             CreateUserText="创建用户"
             CreateUserUrl="~/Account/Register.aspx">
         </asp:Login>
+
+        <asp:Label ></asp:Label>
     </main>
 </asp:Content>
 
