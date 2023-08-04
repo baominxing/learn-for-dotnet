@@ -1,0 +1,41 @@
+﻿
+@{
+    ViewBag.Title = "Register";
+}
+
+<h2>你好，我是注册页面</h2>
+
+<main>
+
+    <form name="Register" method="post" action="~/Account/Register">
+        <div class="row">
+            <div class="col-md-12">
+                <label class="form-control col-md-1">账 户：</label>
+                <input class="form-control col-md-10" name="Username" type="text" required />
+            </div>
+
+            <br />
+            <br />
+
+            <div class="col-md-12">
+                <label class="form-control col-md-1">密 码：</label>
+                <input class="form-control col-md-11" name="Password" type="password" required />
+            </div>
+
+            <br />
+            <br />
+
+            <div class="col-md-12">
+                <label class="form-control col-md-1">性 别：</label>
+                <input class="form-control col-md-11" name="Sex" type="text" required />
+            </div>
+            
+            <br />
+            <br />
+
+            <div class="col-md-2 btn-group">
+                <button class="form-control btn-primary" value="保存">保存</button>
+            </div>
+        </div>
+    </form>
+</main>

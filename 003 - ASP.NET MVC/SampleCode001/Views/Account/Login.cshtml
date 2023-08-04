@@ -1,0 +1,59 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+}
+
+<h2>你好，我是登录页面</h2>
+
+<main>
+
+    <div class="row">
+        <div class="col-md-12">
+            <label class="form-control col-md-1">账 户：</label>
+            <input class="form-control col-md-10" id="Username" type="text" />
+        </div>
+
+        <br />
+        <br />
+
+        <div class="col-md-12">
+            <label class="form-control col-md-1">密 码：</label>
+            <input class="form-control col-md-11" id="Password" type="password" />
+        </div>
+
+        <br />
+        <br />
+
+        <div class="col-md-12">
+            <label class="form-control col-md-1">记 住：</label>
+            <input type="checkbox" id="Remember" checked="checked" />
+        </div>
+
+        <br />
+        <br />
+
+        <div class="col-md-2">
+            <button id="Btn_Login" class="form-control btn-primary" value="登录">登录</button>
+
+            <br />
+            <br />
+
+            <a class="form-control btn-primary" href="~/Account/Register">还没有账户？点我注册</a>
+        </div>
+    </div>
+</main>
+
+<script type="text/javascript" src="~/Scripts/jquery-3.4.1.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $("#Btn_Login").on("click", function () {
+            $.post("/Account/Login", {
+                Username: $("#Username").val(),
+                Password: $("#Password").val(),
+                Remember: $("#Remember").val(),
+            }, function (response) {
+                window.location.replace(response.redirectUrl);
+            });
+        })
+    })
+</script>
