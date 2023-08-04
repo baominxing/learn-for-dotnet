@@ -21,6 +21,15 @@ namespace SampleCode001
 
         void Application_AuthenticateRequest(object sender, EventArgs e)
         {
+            // 认证事件处理顺序
+            // formsauthenticationmodule.authenticateRequest事件处理程序，在这个事件处理程序里，User对象被初始化，赋予相关属性，比如IsAuthenticated
+            ////////////////////////////////////////////////////////////
+            // Step 6: Create a user object for the ticket
+            // e.Context.SetPrincipalNoDemand(new GenericPrincipal(new FormsIdentity(ticket2), new String[0]));
+            // custommodule.authenticateRequest事件处理程序
+            // global.authenticateRequest事件处理程序
+            // global.application_authenticateRequest方法
+
             var request = (HttpApplication)sender;
 
             // 判断用户身份验证信息是否为空 
@@ -43,6 +52,11 @@ namespace SampleCode001
 
             // 重新初始化GeneralPrincipal对象
             HttpContext.Current.User = new GenericPrincipal(user_identity, roles);
+
+        }
+
+        void Application_AuthorizeRequest(object sender, EventArgs e)
+        {
 
         }
     }
