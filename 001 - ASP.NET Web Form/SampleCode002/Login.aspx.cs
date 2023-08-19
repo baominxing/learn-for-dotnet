@@ -7,7 +7,7 @@ using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace SampleCode001
+namespace SampleCode002
 {
     public partial class Login : System.Web.UI.Page
     {

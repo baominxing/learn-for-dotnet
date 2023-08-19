@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SampleCode001 {
+namespace SampleCode002 {
     
     
     public partial class ViewSwitcher {

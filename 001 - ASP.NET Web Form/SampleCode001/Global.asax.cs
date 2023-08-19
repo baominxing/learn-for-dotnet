@@ -7,6 +7,7 @@ using System.Web.Optimization;
 using System.Web.Routing;
 using System.Web.Security;
 using System.Web.SessionState;
+using Microsoft.Ajax.Utilities;
 
 namespace SampleCode001
 {
@@ -14,6 +15,8 @@ namespace SampleCode001
     {
         void Application_Start(object sender, EventArgs e)
         {
+            var s =this.Events;
+
             // 在应用程序启动时运行的代码
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
@@ -21,6 +24,7 @@ namespace SampleCode001
 
         void Application_AuthenticateRequest(object sender, EventArgs e)
         {
+            var s = this.Events;
             // 认证事件处理顺序
             // formsauthenticationmodule.authenticateRequest事件处理程序，在这个事件处理程序里，User对象被初始化，赋予相关属性，比如IsAuthenticated
             ////////////////////////////////////////////////////////////
@@ -52,12 +56,22 @@ namespace SampleCode001
 
             // 重新初始化GeneralPrincipal对象
             HttpContext.Current.User = new GenericPrincipal(user_identity, roles);
-
         }
 
-        void Application_AuthorizeRequest(object sender, EventArgs e)
+        /// <summary>
+        /// 为HttpModule里面的事件注册动作
+        /// 配置文件module名称_module里面事件名称
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void CustomHttpModule_CustomHttpModuleHandler(object sender, EventArgs e)
         {
+            HttpContext.Current.Response.Write("<h2>This is MCustomHttpModule_CustomHttpModuleHandler</h2>");
+        }
 
+        protected void CustomHttpModule_CustomHttpModuleHandler2(object sender, EventArgs e)
+        {
+            HttpContext.Current.Response.Write("<h2>This is MCustomHttpModule_CustomHttpModuleHandler2</h2>");
         }
     }
 }

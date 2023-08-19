@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace SampleCode001
+namespace SampleCode002
 {
     public partial class _Default : Page
     {
