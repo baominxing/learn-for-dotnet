@@ -1,24 +1,31 @@
-﻿using System.Web.Http;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
+using System.Web;
+using System.Web.UI.WebControls;
 using Owin;
+using SampleCode001.Middlewares;
 
 namespace SampleCode001
 {
-    internal class Startup
+    public class Startup
     {
-        public void Configuration(IAppBuilder appBuilder)
+        public void Configuration(IAppBuilder app)
         {
-            // 创建 Web API 的配置
-            var config = new HttpConfiguration();
-            // 启用标记路由
-            config.MapHttpAttributeRoutes();
-            // 默认的 Web API 路由
-            config.Routes.MapHttpRoute(
-                name: "DefaultApi",
-                routeTemplate: "api/{controller}/{id}",
-                defaults: new { id = RouteParameter.Optional }
-            );
-            // 将路由配置附加到 appBuilder
-            appBuilder.UseWebApi(config);
+            app.Use<CacheMiddleware>();
+
+            // 这段代码演示如何将中间件内容插入到管道里
+            app.Use<TimerMiddleware>();
+
+            // 这段代码演示如何将中间件内容插入到管道里
+            app.Run(context =>
+            {
+                context.Response.ContentType = "text/plain";
+
+                return context.Response.WriteAsync("Hello World!");
+            });
+
         }
     }
 }
