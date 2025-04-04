@@ -22,7 +22,7 @@ namespace SampleCode001
         public void ProcessRequest(HttpContext context)
         {
             context.Response.ContentType = "text/html";
-            context.Response.Write("这个从自定义Handler处理输出");
+            context.Response.Write("这个从自定义Handler处理输出，测试一次推送触发流水线构建");
         }
     }
 }
